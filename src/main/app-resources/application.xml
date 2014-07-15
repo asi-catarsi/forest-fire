@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application id="CATARSI_ForestFireTool">
+        <jobTemplates>
+                <jobTemplate id="ForestFireTool">
+			<streamingExecutable>/application/ForestFireTool/run.sh</streamingExecutable>
+			<defaultParameters>
+                                <parameter id="starttime" title="Start Time" abstract="Start Time to query the Catalogue" scope="runtime" type="opensearch" target="time:start"/>
+                                <parameter id="enddate" title="End time" abstract="End time to query the Catalogue" scope="runtime" type="opensearch" target="time:end"/>
+                                <parameter id="bbox" title="Bounding Box" abstract="Bounding Box to query the Catalogue" scope="runtime" type="opensearch" target="geo:box"/>
+                                <parameter id="geometry" title="Geometry" abstract="Geometry" scope="runtime" />
+			</defaultParameters>
+			<defaultJobconf></defaultJobconf>
+		</jobTemplate>
+	</jobTemplates>
+	<workflow id="wf_ForestFireTool" title="Forest Fire Tool" abstract="CATARSI FFT">
+                <workflowVersion>1.0</workflowVersion>
+                <node id="node_ForestFireTool">
+                        <job id="ForestFireTool"/>
+			<sources>
+                                <source refid="cas:series">http://catalogo.progetto-catarsi.it/catalogue/search/LANDSAT5/description</source>
+			</sources>
+			<parameters/>
+		</node>
+        </workflow>
+</application>	
